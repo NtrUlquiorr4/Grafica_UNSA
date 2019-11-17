@@ -24,7 +24,6 @@ void Cambio_Perspectiva(GLFWwindow* window, int key, int scancode, int action, i
 }
 
 void Mostrar( GLFWwindow* window ) {
-
 	GLint windowWidth, windowHeight;
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
 	glViewport(0, 0, windowWidth, windowHeight);
@@ -39,36 +38,26 @@ void Mostrar( GLFWwindow* window ) {
 		cameraUp[0], cameraUp[1], cameraUp[2]);
 	} else {
 		double dist = sqrt(1 / 3.0);
-		gluLookAt(dist, dist, dist,
-					0.0,  0.0,  0.0,
-					0.0,  1.0,  0.0);
+		gluLookAt(dist, dist, dist,0.0,  0.0,  0.0, 0.0,  1.0,  0.0);
 	}
-
 	glMatrixMode(GL_MODELVIEW);
-
 	glBegin(GL_LINES);//perspectiva
-
 	glColor3d(1.0, 0.0, 0.0);
 	glVertex3d(1.0, 0.0, 0.0);
 	glVertex3d(1.0, 0.0, 0.0);
-
 	glColor3d(0.0, 1.0, 0.0);
 	glVertex3d(0.0, 1.0, 0.0);
 	glVertex3d(0.0, 1.0, 0.0);
-
 	glColor3d(0.0, 0.0, 1.0);
 	glVertex3d(0.0, 0.0, 1.0);
 	glVertex3d(0.0, 0.0, 1.0);
-
 	glEnd();
 	glFlush();
-
 	glfwSwapBuffers(window);
 	glfwPollEvents();
 }
 
 int main(int argc, char** argv) {
-	
 	GLFWwindow* window = glfwCreateWindow(900, 600, "Grafica_perspectiva", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSetKeyCallback(window, Cambio_Perspectiva);
